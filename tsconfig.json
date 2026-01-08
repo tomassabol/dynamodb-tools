@@ -1,0 +1,10 @@
+{
+  "extends": "@tsconfig/node22",
+  "compilerOptions": {
+    "strict": true,
+    "declaration": true,
+    "outDir": "dist",
+    "lib": ["ESNext"]
+  },
+  "include": ["src", "test"]
+}

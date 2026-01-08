@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`stream-handler error with onError handler 1`] = `
+[
+  [
+    {
+      "awsRegion": "eu-central-1",
+      "dynamodb": {
+        "ApproximateCreationDateTime": 1675243406,
+        "Keys": {
+          "pk": {
+            "S": "c56bd695-c37c-4368-af66-1445ddbf17a8",
+          },
+          "sk": {
+            "S": "76236873-f38f-4512-9657-6375d276bb83",
+          },
+        },
+        "NewImage": {
+          "pk": {
+            "S": "c56bd695-c37c-4368-af66-1445ddbf17a8",
+          },
+          "sk": {
+            "S": "76236873-f38f-4512-9657-6375d276bb83",
+          },
+        },
+        "SequenceNumber": "4898900000000061634845079",
+        "SizeBytes": 152,
+        "StreamViewType": "NEW_AND_OLD_IMAGES",
+      },
+      "eventID": "56f0ecac7267fb3ec2b6190929519e52",
+      "eventName": "INSERT",
+      "eventSource": "aws:dynamodb",
+      "eventSourceARN": "arn:aws:dynamodb:eu-central-1:055951622116:table/cdk-dynamodb-app-v1-rs-TestTable7E8F86C8-HQ7ZWDOVI9HY/stream/2023-01-31T13:55:10.906",
+      "eventVersion": "1.1",
+    },
+    [Error: Failure injection],
+  ],
+]
+`;
+
+exports[`stream-handler invalid event with onError handler 1`] = `
+[
+  [
+    {
+      "awsRegion": "eu-central-1",
+      "dynamodb": {
+        "ApproximateCreationDateTime": 1675243406,
+        "Keys": {
+          "pk": {
+            "S": "c56bd695-c37c-4368-af66-1445ddbf17a8",
+          },
+          "sk": {
+            "S": "76236873-f38f-4512-9657-6375d276bb83",
+          },
+        },
+        "NewImage": {
+          "pk": {
+            "S": "c56bd695-c37c-4368-af66-1445ddbf17a8",
+          },
+          "sk": {
+            "S": "76236873-f38f-4512-9657-6375d276bb83",
+          },
+        },
+        "SequenceNumber": "4898900000000061634845079",
+        "SizeBytes": 152,
+        "StreamViewType": "NEW_AND_OLD_IMAGES",
+      },
+      "eventID": "56f0ecac7267fb3ec2b6190929519e52",
+      "eventName": "INVALID",
+      "eventSource": "aws:dynamodb",
+      "eventSourceARN": "arn:aws:dynamodb:eu-central-1:055951622116:table/cdk-dynamodb-app-v1-rs-TestTable7E8F86C8-HQ7ZWDOVI9HY/stream/2023-01-31T13:55:10.906",
+      "eventVersion": "1.1",
+    },
+    [Error: Event INVALID not expected],
+  ],
+]
+`;
+
+exports[`stream-handler success 1`] = `
+[
+  [
+    {
+      "pk": "c56bd695-c37c-4368-af66-1445ddbf17a8",
+      "sk": "76236873-f38f-4512-9657-6375d276bb83",
+    },
+  ],
+  [
+    {
+      "pk": "ac862be8-e3cd-49ff-8c0e-6c1ee5452ec2",
+      "sk": "9fc4e6c8-a731-4291-a620-26f6063c550b",
+    },
+  ],
+]
+`;
+
+exports[`stream-handler success 2`] = `
+[
+  [
+    {
+      "pk": "fffc8917-36b2-40e0-ae2a-132e1891d8a4",
+      "sk": "db387244-5f4f-4189-a18a-f5a935c2618b",
+    },
+    {
+      "pk": "ac862be8-e3cd-49ff-8c0e-6c1ee5452ec2",
+      "sk": "9fc4e6c8-a731-4291-a620-26f6063c550b",
+    },
+  ],
+]
+`;
+
+exports[`stream-handler success 3`] = `
+[
+  [
+    {
+      "pk": "9ebcd559-b967-4dfc-8a79-f914441de152",
+      "sk": "6ec3ca0a-e2ed-4552-927d-63f7ed4178ed",
+    },
+  ],
+]
+`;

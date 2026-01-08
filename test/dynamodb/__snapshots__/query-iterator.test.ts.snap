@@ -1,0 +1,571 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`query-iterator concatQueryResults 1`] = `
+[
+  [
+    QueryCommand {
+      "clientCommand": QueryCommand {
+        "input": {
+          "ExclusiveStartKey": undefined,
+          "ExpressionAttributeNames": {
+            "#pk": "pk",
+          },
+          "ExpressionAttributeValues": {
+            ":pk": "key",
+          },
+          "KeyConditionExpression": "#pk = :pk",
+          "TableName": "table",
+        },
+        "middlewareStack": {
+          "add": [Function],
+          "addRelativeTo": [Function],
+          "applyToStack": [Function],
+          "clone": [Function],
+          "concat": [Function],
+          "identify": [Function],
+          "identifyOnResolve": [Function],
+          "remove": [Function],
+          "removeByTag": [Function],
+          "resolve": [Function],
+          "use": [Function],
+        },
+      },
+      "input": {
+        "ExclusiveStartKey": undefined,
+        "ExpressionAttributeNames": {
+          "#pk": "pk",
+        },
+        "ExpressionAttributeValues": {
+          ":pk": "key",
+        },
+        "KeyConditionExpression": "#pk = :pk",
+        "TableName": "table",
+      },
+      "inputKeyNodes": [
+        {
+          "children": {
+            "children": [
+              {
+                "key": "AttributeValueList",
+              },
+            ],
+          },
+          "key": "KeyConditions",
+        },
+        {
+          "children": {
+            "children": [
+              {
+                "key": "AttributeValueList",
+              },
+            ],
+          },
+          "key": "QueryFilter",
+        },
+        {
+          "key": "ExclusiveStartKey",
+        },
+        {
+          "key": "ExpressionAttributeValues",
+        },
+      ],
+      "middlewareStack": {
+        "add": [Function],
+        "addRelativeTo": [Function],
+        "applyToStack": [Function],
+        "clone": [Function],
+        "concat": [Function],
+        "identify": [Function],
+        "identifyOnResolve": [Function],
+        "remove": [Function],
+        "removeByTag": [Function],
+        "resolve": [Function],
+        "use": [Function],
+      },
+      "outputKeyNodes": [
+        {
+          "key": "Items",
+        },
+        {
+          "key": "LastEvaluatedKey",
+        },
+      ],
+    },
+  ],
+  [
+    QueryCommand {
+      "clientCommand": QueryCommand {
+        "input": {
+          "ExclusiveStartKey": {
+            "key": "1",
+          },
+          "ExpressionAttributeNames": {
+            "#pk": "pk",
+          },
+          "ExpressionAttributeValues": {
+            ":pk": "key",
+          },
+          "KeyConditionExpression": "#pk = :pk",
+          "TableName": "table",
+        },
+        "middlewareStack": {
+          "add": [Function],
+          "addRelativeTo": [Function],
+          "applyToStack": [Function],
+          "clone": [Function],
+          "concat": [Function],
+          "identify": [Function],
+          "identifyOnResolve": [Function],
+          "remove": [Function],
+          "removeByTag": [Function],
+          "resolve": [Function],
+          "use": [Function],
+        },
+      },
+      "input": {
+        "ExclusiveStartKey": {
+          "key": "1",
+        },
+        "ExpressionAttributeNames": {
+          "#pk": "pk",
+        },
+        "ExpressionAttributeValues": {
+          ":pk": "key",
+        },
+        "KeyConditionExpression": "#pk = :pk",
+        "TableName": "table",
+      },
+      "inputKeyNodes": [
+        {
+          "children": {
+            "children": [
+              {
+                "key": "AttributeValueList",
+              },
+            ],
+          },
+          "key": "KeyConditions",
+        },
+        {
+          "children": {
+            "children": [
+              {
+                "key": "AttributeValueList",
+              },
+            ],
+          },
+          "key": "QueryFilter",
+        },
+        {
+          "key": "ExclusiveStartKey",
+        },
+        {
+          "key": "ExpressionAttributeValues",
+        },
+      ],
+      "middlewareStack": {
+        "add": [Function],
+        "addRelativeTo": [Function],
+        "applyToStack": [Function],
+        "clone": [Function],
+        "concat": [Function],
+        "identify": [Function],
+        "identifyOnResolve": [Function],
+        "remove": [Function],
+        "removeByTag": [Function],
+        "resolve": [Function],
+        "use": [Function],
+      },
+      "outputKeyNodes": [
+        {
+          "key": "Items",
+        },
+        {
+          "key": "LastEvaluatedKey",
+        },
+      ],
+    },
+  ],
+  [
+    QueryCommand {
+      "clientCommand": QueryCommand {
+        "input": {
+          "ExclusiveStartKey": {
+            "key": "2",
+          },
+          "ExpressionAttributeNames": {
+            "#pk": "pk",
+          },
+          "ExpressionAttributeValues": {
+            ":pk": "key",
+          },
+          "KeyConditionExpression": "#pk = :pk",
+          "TableName": "table",
+        },
+        "middlewareStack": {
+          "add": [Function],
+          "addRelativeTo": [Function],
+          "applyToStack": [Function],
+          "clone": [Function],
+          "concat": [Function],
+          "identify": [Function],
+          "identifyOnResolve": [Function],
+          "remove": [Function],
+          "removeByTag": [Function],
+          "resolve": [Function],
+          "use": [Function],
+        },
+      },
+      "input": {
+        "ExclusiveStartKey": {
+          "key": "2",
+        },
+        "ExpressionAttributeNames": {
+          "#pk": "pk",
+        },
+        "ExpressionAttributeValues": {
+          ":pk": "key",
+        },
+        "KeyConditionExpression": "#pk = :pk",
+        "TableName": "table",
+      },
+      "inputKeyNodes": [
+        {
+          "children": {
+            "children": [
+              {
+                "key": "AttributeValueList",
+              },
+            ],
+          },
+          "key": "KeyConditions",
+        },
+        {
+          "children": {
+            "children": [
+              {
+                "key": "AttributeValueList",
+              },
+            ],
+          },
+          "key": "QueryFilter",
+        },
+        {
+          "key": "ExclusiveStartKey",
+        },
+        {
+          "key": "ExpressionAttributeValues",
+        },
+      ],
+      "middlewareStack": {
+        "add": [Function],
+        "addRelativeTo": [Function],
+        "applyToStack": [Function],
+        "clone": [Function],
+        "concat": [Function],
+        "identify": [Function],
+        "identifyOnResolve": [Function],
+        "remove": [Function],
+        "removeByTag": [Function],
+        "resolve": [Function],
+        "use": [Function],
+      },
+      "outputKeyNodes": [
+        {
+          "key": "Items",
+        },
+        {
+          "key": "LastEvaluatedKey",
+        },
+      ],
+    },
+  ],
+]
+`;
+
+exports[`query-iterator concatQueryResults with start key 1`] = `
+[
+  [
+    QueryCommand {
+      "clientCommand": QueryCommand {
+        "input": {
+          "ExclusiveStartKey": {
+            "key": "start-key",
+          },
+          "ExpressionAttributeNames": {
+            "#pk": "pk",
+          },
+          "ExpressionAttributeValues": {
+            ":pk": "key",
+          },
+          "KeyConditionExpression": "#pk = :pk",
+          "TableName": "table",
+        },
+        "middlewareStack": {
+          "add": [Function],
+          "addRelativeTo": [Function],
+          "applyToStack": [Function],
+          "clone": [Function],
+          "concat": [Function],
+          "identify": [Function],
+          "identifyOnResolve": [Function],
+          "remove": [Function],
+          "removeByTag": [Function],
+          "resolve": [Function],
+          "use": [Function],
+        },
+      },
+      "input": {
+        "ExclusiveStartKey": {
+          "key": "start-key",
+        },
+        "ExpressionAttributeNames": {
+          "#pk": "pk",
+        },
+        "ExpressionAttributeValues": {
+          ":pk": "key",
+        },
+        "KeyConditionExpression": "#pk = :pk",
+        "TableName": "table",
+      },
+      "inputKeyNodes": [
+        {
+          "children": {
+            "children": [
+              {
+                "key": "AttributeValueList",
+              },
+            ],
+          },
+          "key": "KeyConditions",
+        },
+        {
+          "children": {
+            "children": [
+              {
+                "key": "AttributeValueList",
+              },
+            ],
+          },
+          "key": "QueryFilter",
+        },
+        {
+          "key": "ExclusiveStartKey",
+        },
+        {
+          "key": "ExpressionAttributeValues",
+        },
+      ],
+      "middlewareStack": {
+        "add": [Function],
+        "addRelativeTo": [Function],
+        "applyToStack": [Function],
+        "clone": [Function],
+        "concat": [Function],
+        "identify": [Function],
+        "identifyOnResolve": [Function],
+        "remove": [Function],
+        "removeByTag": [Function],
+        "resolve": [Function],
+        "use": [Function],
+      },
+      "outputKeyNodes": [
+        {
+          "key": "Items",
+        },
+        {
+          "key": "LastEvaluatedKey",
+        },
+      ],
+    },
+  ],
+  [
+    QueryCommand {
+      "clientCommand": QueryCommand {
+        "input": {
+          "ExclusiveStartKey": {
+            "key": "1",
+          },
+          "ExpressionAttributeNames": {
+            "#pk": "pk",
+          },
+          "ExpressionAttributeValues": {
+            ":pk": "key",
+          },
+          "KeyConditionExpression": "#pk = :pk",
+          "TableName": "table",
+        },
+        "middlewareStack": {
+          "add": [Function],
+          "addRelativeTo": [Function],
+          "applyToStack": [Function],
+          "clone": [Function],
+          "concat": [Function],
+          "identify": [Function],
+          "identifyOnResolve": [Function],
+          "remove": [Function],
+          "removeByTag": [Function],
+          "resolve": [Function],
+          "use": [Function],
+        },
+      },
+      "input": {
+        "ExclusiveStartKey": {
+          "key": "1",
+        },
+        "ExpressionAttributeNames": {
+          "#pk": "pk",
+        },
+        "ExpressionAttributeValues": {
+          ":pk": "key",
+        },
+        "KeyConditionExpression": "#pk = :pk",
+        "TableName": "table",
+      },
+      "inputKeyNodes": [
+        {
+          "children": {
+            "children": [
+              {
+                "key": "AttributeValueList",
+              },
+            ],
+          },
+          "key": "KeyConditions",
+        },
+        {
+          "children": {
+            "children": [
+              {
+                "key": "AttributeValueList",
+              },
+            ],
+          },
+          "key": "QueryFilter",
+        },
+        {
+          "key": "ExclusiveStartKey",
+        },
+        {
+          "key": "ExpressionAttributeValues",
+        },
+      ],
+      "middlewareStack": {
+        "add": [Function],
+        "addRelativeTo": [Function],
+        "applyToStack": [Function],
+        "clone": [Function],
+        "concat": [Function],
+        "identify": [Function],
+        "identifyOnResolve": [Function],
+        "remove": [Function],
+        "removeByTag": [Function],
+        "resolve": [Function],
+        "use": [Function],
+      },
+      "outputKeyNodes": [
+        {
+          "key": "Items",
+        },
+        {
+          "key": "LastEvaluatedKey",
+        },
+      ],
+    },
+  ],
+  [
+    QueryCommand {
+      "clientCommand": QueryCommand {
+        "input": {
+          "ExclusiveStartKey": {
+            "key": "2",
+          },
+          "ExpressionAttributeNames": {
+            "#pk": "pk",
+          },
+          "ExpressionAttributeValues": {
+            ":pk": "key",
+          },
+          "KeyConditionExpression": "#pk = :pk",
+          "TableName": "table",
+        },
+        "middlewareStack": {
+          "add": [Function],
+          "addRelativeTo": [Function],
+          "applyToStack": [Function],
+          "clone": [Function],
+          "concat": [Function],
+          "identify": [Function],
+          "identifyOnResolve": [Function],
+          "remove": [Function],
+          "removeByTag": [Function],
+          "resolve": [Function],
+          "use": [Function],
+        },
+      },
+      "input": {
+        "ExclusiveStartKey": {
+          "key": "2",
+        },
+        "ExpressionAttributeNames": {
+          "#pk": "pk",
+        },
+        "ExpressionAttributeValues": {
+          ":pk": "key",
+        },
+        "KeyConditionExpression": "#pk = :pk",
+        "TableName": "table",
+      },
+      "inputKeyNodes": [
+        {
+          "children": {
+            "children": [
+              {
+                "key": "AttributeValueList",
+              },
+            ],
+          },
+          "key": "KeyConditions",
+        },
+        {
+          "children": {
+            "children": [
+              {
+                "key": "AttributeValueList",
+              },
+            ],
+          },
+          "key": "QueryFilter",
+        },
+        {
+          "key": "ExclusiveStartKey",
+        },
+        {
+          "key": "ExpressionAttributeValues",
+        },
+      ],
+      "middlewareStack": {
+        "add": [Function],
+        "addRelativeTo": [Function],
+        "applyToStack": [Function],
+        "clone": [Function],
+        "concat": [Function],
+        "identify": [Function],
+        "identifyOnResolve": [Function],
+        "remove": [Function],
+        "removeByTag": [Function],
+        "resolve": [Function],
+        "use": [Function],
+      },
+      "outputKeyNodes": [
+        {
+          "key": "Items",
+        },
+        {
+          "key": "LastEvaluatedKey",
+        },
+      ],
+    },
+  ],
+]
+`;
