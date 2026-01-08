@@ -1,6 +1,6 @@
 {
   "name": "@tomassabol/dynamodb-tools",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "description": "Tools for working with DynamoDB using AWS SDK v3",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
