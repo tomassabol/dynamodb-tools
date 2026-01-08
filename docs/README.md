@@ -1,6 +1,6 @@
-@gymbeam/dynamodb-tools
+@tomassabol/dynamodb-tools
 
-# @gymbeam/dynamodb-tools
+# @tomassabol/dynamodb-tools
 
 ## Table of contents
 
@@ -49,7 +49,9 @@
 
 #### Defined in
 
-[src/dynamodb/update-command-builder.ts:13](https://bitbucket.org/gymbeamdev/dynamodb-tools/src/d5f341b/src/dynamodb/update-command-builder.ts#lines-13)
+```typescript
+export type ConditionOperator = "=" | "<" | "<=" | ">" | ">=" | "<>" | "IN"
+```
 
 ---
 
@@ -69,7 +71,16 @@ Default fields added to tables
 
 #### Defined in
 
-[src/dynamodb/default-table-fields.ts:8](https://bitbucket.org/gymbeamdev/dynamodb-tools/src/d5f341b/src/dynamodb/default-table-fields.ts#lines-8)
+```typescript
+export type DefaultTableFields = {
+  /** Date and time when record was created */
+  createdAt: string
+  /** Date and time when record was last updated */
+  updatedAt: string
+  /** Time to live */
+  ttl?: number | null
+}
+```
 
 ---
 
@@ -100,7 +111,51 @@ Default fields added to tables
 
 #### Defined in
 
-[src/streams/stream-handler.ts:176](https://bitbucket.org/gymbeamdev/dynamodb-tools/src/d5f341b/src/streams/stream-handler.ts#lines-176)
+```typescript
+export type DynamoDbStreamHandlerOptions<T> = {
+  /** Handle insertion of an item into DynamoDB table */
+  onInsert?: (item: T) => Promise<void>
+  /** Handle update of an item into DynamoDB table */
+  onModify?: (oldItem: T, newItem: T) => Promise<void>
+  /** Handle removal of an item into DynamoDB table */
+  onRemove?: (item: T) => Promise<void>
+  /**
+   * Handle errors in onInsert, onModify and onRemove handlers.
+   * If not used then error is thrown
+   * Note: when used onError handler the idempotency management will prevent retry on the same record!
+   */
+  onError?: (
+    record: DynamoDBRecord,
+    error: unknown
+  ) => Promise<void | unknown> | void | unknown
+  /**
+   * Logger instance
+   */
+  logger?: ILogger
+  /**
+   * Optional store for idempotency handling using @aws-lambda-powertools/idempotency
+   * If not specified then idempotency is not managed.
+   */
+  idempotencyPersistanceStore?: BasePersistenceLayer
+  /**
+   * Optional configuration for idempotency
+   */
+  idempotencyConfig?: IdempotencyConfigOptions
+  /**
+   * Process batch items concurrently. Default is false, i.e. sequentially
+   * Should not be used if the processing order if items is important.
+   */
+  concurrentBatchProcessing?: boolean
+  /**
+   * If exception is handled by onError then the exception is
+   */
+  consumeHandledExceptions?: boolean
+  /**
+   * Enable logging of incoming events, default is true
+   */
+  logEvents?: boolean
+}
+```
 
 ---
 
@@ -110,7 +165,12 @@ Default fields added to tables
 
 #### Defined in
 
-[src/dynamodb/iterators.ts:9](https://bitbucket.org/gymbeamdev/dynamodb-tools/src/d5f341b/src/dynamodb/iterators.ts#lines-9)
+```typescript
+export type QueryTableIteratorOptions = Omit<
+  QueryCommandInput,
+  "TableName" | "ExclusiveStartKey"
+>
+```
 
 ---
 
@@ -120,7 +180,12 @@ Default fields added to tables
 
 #### Defined in
 
-[src/dynamodb/iterators.ts:14](https://bitbucket.org/gymbeamdev/dynamodb-tools/src/d5f341b/src/dynamodb/iterators.ts#lines-14)
+```typescript
+export type ScanTableIteratorOptions = Omit<
+  ScanCommandInput,
+  "TableName" | "ExclusiveStartKey"
+>
+```
 
 ---
 
@@ -139,7 +204,17 @@ Default fields added to tables
 
 #### Defined in
 
-[src/utils/create-ttl.ts:16](https://bitbucket.org/gymbeamdev/dynamodb-tools/src/d5f341b/src/utils/create-ttl.ts#lines-16)
+```typescript
+export type TTLValue = {
+  years?: number
+  months?: number
+  weeks?: number
+  days?: number
+  hours?: number
+  minutes?: number
+  seconds?: number
+}
+```
 
 ---
 
@@ -157,7 +232,11 @@ Update Command Options
 
 #### Defined in
 
-[src/dynamodb/update-command-builder.ts:9](https://bitbucket.org/gymbeamdev/dynamodb-tools/src/d5f341b/src/dynamodb/update-command-builder.ts#lines-9)
+```typescript
+export type UpdateCommandOptions = {
+  ifNotExists?: boolean
+}
+```
 
 ## Functions
 
@@ -183,7 +262,15 @@ Update Command Options
 
 #### Defined in
 
-[src/dynamodb/iterators.ts:81](https://bitbucket.org/gymbeamdev/dynamodb-tools/src/d5f341b/src/dynamodb/iterators.ts#lines-81)
+```typescript
+export async function collectItems<T>(iterator: AsyncGenerator<T>) {
+  const result = []
+  for await (const item of iterator) {
+    result.push(item)
+  }
+  return result
+}
+```
 
 ---
 
@@ -221,7 +308,29 @@ const output = await concatQueryResults(client, input)
 
 #### Defined in
 
-[src/dynamodb/query-iterator.ts:71](https://bitbucket.org/gymbeamdev/dynamodb-tools/src/d5f341b/src/dynamodb/query-iterator.ts#lines-71)
+```typescript
+export async function concatQueryResults<T>(
+  client: DynamoDBDocumentClient,
+  input: QueryCommandInput,
+  options: {
+    startKey?: object
+  } = {}
+): Promise<T[]> {
+  const result = []
+
+  const asyncIterator = queryItemIterator((exclusiveStartKey) => {
+    const command = new QueryCommand({
+      ...input,
+      ExclusiveStartKey: exclusiveStartKey,
+    })
+    return client.send(command)
+  }, options)
+
+  for await (const item of asyncIterator) result.push(item as T)
+
+  return result
+}
+```
 
 ---
 
@@ -243,7 +352,11 @@ Create compound key from object
 
 #### Defined in
 
-[src/utils/compound-key.ts:5](https://bitbucket.org/gymbeamdev/dynamodb-tools/src/d5f341b/src/utils/compound-key.ts#lines-5)
+```typescript
+export function createCompoundKey(key: Record<string, string>): string {
+  return Object.values(key).join("#")
+}
+```
 
 ---
 
@@ -274,7 +387,22 @@ createDefaultIdempotencyPersistanceStore({
 
 #### Defined in
 
-[src/streams/stream-handler.ts:233](https://bitbucket.org/gymbeamdev/dynamodb-tools/src/d5f341b/src/streams/stream-handler.ts#lines-233)
+```typescript
+export function createDefaultIdempotencyPersistanceStore(
+  config: Partial<DynamoDBPersistenceOptions> = {}
+) {
+  const { tableName = process.env.IDEMPOTENCY_TABLE } = config
+  if (!tableName)
+    throw new Error(
+      "createDefaultIdempotencyPersistanceStore: invalid table name, use options or env IDEMPOTENCY_TABLE"
+    )
+
+  return new DynamoDBPersistenceLayer({
+    tableName,
+    ...config,
+  })
+}
+```
 
 ---
 
@@ -297,7 +425,20 @@ Create values for default table fields
 
 #### Defined in
 
-[src/dynamodb/default-table-fields.ts:21](https://bitbucket.org/gymbeamdev/dynamodb-tools/src/d5f341b/src/dynamodb/default-table-fields.ts#lines-21)
+```typescript
+export function createDefaultTableFields(
+  options: { ttl?: TTLValue | null } = {}
+): DefaultTableFields {
+  const { ttl } = options
+  const currentDate = getCurrentDateTimeISO()
+
+  return {
+    createdAt: currentDate,
+    updatedAt: currentDate,
+    ...(ttl !== undefined && { ttl: createTTL(ttl) }),
+  }
+}
+```
 
 ---
 
@@ -347,7 +488,46 @@ const handler = createDynamoDbStreamHandler<TableRecord>(
 
 #### Defined in
 
-[src/streams/stream-handler.ts:30](https://bitbucket.org/gymbeamdev/dynamodb-tools/src/d5f341b/src/streams/stream-handler.ts#lines-30)
+```typescript
+export function createDynamoDbStreamHandler<T>(
+  options: DynamoDbStreamHandlerOptions<T>
+) {
+  const {
+    logger = defaultLogger,
+    idempotencyPersistanceStore,
+    idempotencyConfig = {},
+    logEvents = true,
+  } = options
+
+  // ... handler implementation
+
+  const lambdaHandler = async (
+    event: DynamoDBStreamEvent,
+    context: Context
+  ) => {
+    if (logEvents)
+      logger.info("Incoming event", { batchSize: event?.Records.length, event })
+
+    config.registerLambdaContext(context)
+
+    if (options.concurrentBatchProcessing) {
+      const settled = await Promise.allSettled(
+        event.Records.map((record) => dispatchEventToHandler(record))
+      )
+
+      if (settled.some((result) => result.status === "rejected")) {
+        throw new Error("Some batch items failed")
+      }
+    } else {
+      for (const record of event.Records) {
+        await dispatchEventToHandler(record)
+      }
+    }
+  }
+
+  return lambdaHandler
+}
+```
 
 ---
 
@@ -369,7 +549,21 @@ Create AWS TTL value
 
 #### Defined in
 
-[src/utils/create-ttl.ts:5](https://bitbucket.org/gymbeamdev/dynamodb-tools/src/d5f341b/src/utils/create-ttl.ts#lines-5)
+```typescript
+export function createTTL(ttl: TTLValue | null): number | null {
+  if (ttl === null) return null
+
+  const ttlSeconds =
+    (ttl.years || 0) * 365 * 24 * 3600 +
+    (ttl.months || 0) * 30 * 24 * 3600 +
+    (ttl.weeks || 0) * 7 * 24 * 3600 +
+    ((ttl.days || 0) * 24 + (ttl.hours || 0)) * 3600 +
+    (ttl.minutes || 0) * 60 +
+    (ttl.seconds || 0)
+
+  return Math.floor(Date.now() / 1000) + ttlSeconds
+}
+```
 
 ---
 
@@ -393,7 +587,18 @@ Default format is supposed to be used to store dates in DynamoDB tables.
 
 #### Defined in
 
-[src/utils/date-time.ts:6](https://bitbucket.org/gymbeamdev/dynamodb-tools/src/d5f341b/src/utils/date-time.ts#lines-6)
+```typescript
+export function getCurrentDateTimeISO(
+  options: { offsetMilliseconds?: number } = {}
+): string {
+  if (options.offsetMilliseconds) {
+    const now = Date.now() + options.offsetMilliseconds
+    return new Date(now).toISOString()
+  } else {
+    return new Date().toISOString()
+  }
+}
+```
 
 ---
 
@@ -422,7 +627,22 @@ Parse compound key into an object
 
 #### Defined in
 
-[src/utils/compound-key.ts:13](https://bitbucket.org/gymbeamdev/dynamodb-tools/src/d5f341b/src/utils/compound-key.ts#lines-13)
+```typescript
+export function parseCompoundKey<K extends string>(
+  compoundKey: string,
+  keys: K[]
+): { [index in K]: string } {
+  const parts = compoundKey.split("#")
+  if (parts.length !== keys.length) {
+    throw new Error(
+      `Cannot parse compound key "${compoundKey}", expected ${keys.length} elements got ${parts.length}.`
+    )
+  }
+  return Object.fromEntries(
+    keys.map((key, index) => [key, parts[index]])
+  ) as Record<K, string>
+}
+```
 
 ---
 
@@ -457,7 +677,20 @@ for await (const item of queryItemIterator((exclusiveStartKey) =>
 
 #### Defined in
 
-[src/dynamodb/query-iterator.ts:48](https://bitbucket.org/gymbeamdev/dynamodb-tools/src/d5f341b/src/dynamodb/query-iterator.ts#lines-48)
+```typescript
+export async function* queryItemIterator(
+  query: (exclusiveStartKey?: object) => Promise<QueryCommandOutput>,
+  options: {
+    startKey?: object
+  } = {}
+) {
+  for await (const result of queryIterator(query, options)) {
+    for (const item of result) {
+      yield item
+    }
+  }
+}
+```
 
 ---
 
@@ -492,7 +725,23 @@ for await (const items of queryIterator((exclusiveStartKey) =>
 
 #### Defined in
 
-[src/dynamodb/query-iterator.ts:20](https://bitbucket.org/gymbeamdev/dynamodb-tools/src/d5f341b/src/dynamodb/query-iterator.ts#lines-20)
+```typescript
+export async function* queryIterator(
+  query: (exclusiveStartKey?: object) => Promise<QueryCommandOutput>,
+  options: {
+    startKey?: object
+  } = {}
+) {
+  let { startKey: exclusiveStartKey } = options
+  do {
+    const result = await query(exclusiveStartKey)
+    if (result.Items) {
+      yield result.Items
+    }
+    exclusiveStartKey = result.LastEvaluatedKey
+  } while (exclusiveStartKey)
+}
+```
 
 ---
 
@@ -523,7 +772,34 @@ Create asynchronous iterator to query all items of a table
 
 #### Defined in
 
-[src/dynamodb/iterators.ts:23](https://bitbucket.org/gymbeamdev/dynamodb-tools/src/d5f341b/src/dynamodb/iterators.ts#lines-23)
+```typescript
+export async function* queryTableIterator<T = unknown>(
+  client: DynamoDBDocumentClient,
+  tableName: string,
+  startKey?: object,
+  options: QueryTableIteratorOptions = {}
+) {
+  let lastKey = startKey
+  do {
+    const command: QueryCommand = new QueryCommand({
+      ...options,
+      TableName: tableName,
+      ExclusiveStartKey: lastKey,
+    })
+
+    const output = await client.send(command)
+
+    const items = output.Items
+    if (items) {
+      for (const item of items) {
+        yield item as T
+      }
+    }
+
+    lastKey = output.LastEvaluatedKey
+  } while (lastKey)
+}
+```
 
 ---
 
@@ -546,7 +822,24 @@ Async generator to perform GetBatchCommand and handle unprocessed keys with retr
 
 #### Defined in
 
-[src/dynamodb/get-many.ts:24](https://bitbucket.org/gymbeamdev/dynamodb-tools/src/d5f341b/src/dynamodb/get-many.ts#lines-24)
+```typescript
+export async function* retryBatchGetCommand(
+  client: DynamoDBDocumentClient,
+  requestItems: BatchGetCommandInput["RequestItems"]
+) {
+  let current = requestItems
+
+  while (current && Object.keys(current).length > 0) {
+    const command = new BatchGetCommand({
+      RequestItems: current,
+    })
+    const output = await client.send(command)
+    current = output.UnprocessedKeys
+
+    yield output
+  }
+}
+```
 
 ---
 
@@ -577,7 +870,34 @@ Create asynchronous iterator to scan all items of a table
 
 #### Defined in
 
-[src/dynamodb/iterators.ts:54](https://bitbucket.org/gymbeamdev/dynamodb-tools/src/d5f341b/src/dynamodb/iterators.ts#lines-54)
+```typescript
+export async function* scanTableIterator<T = unknown>(
+  client: DynamoDBDocumentClient,
+  tableName: string,
+  startKey?: object,
+  options: ScanTableIteratorOptions = {}
+) {
+  let lastKey = startKey
+  do {
+    const command: ScanCommand = new ScanCommand({
+      ...options,
+      TableName: tableName,
+      ExclusiveStartKey: lastKey,
+    })
+
+    const output = await client.send(command)
+
+    const items = output.Items
+    if (items) {
+      for (const item of items) {
+        yield item as T
+      }
+    }
+
+    lastKey = output.LastEvaluatedKey
+  } while (lastKey)
+}
+```
 
 ---
 
@@ -606,4 +926,13 @@ Generator to split an array into smaller arrays containing max batchSize items
 
 #### Defined in
 
-[src/dynamodb/get-many.ts:11](https://bitbucket.org/gymbeamdev/dynamodb-tools/src/d5f341b/src/dynamodb/get-many.ts#lines-11)
+```typescript
+export function* splitToBatches<T>(arr: T[], batchSize = 25) {
+  let start = 0
+  while (start < arr.length) {
+    const end = start + batchSize
+    yield arr.slice(start, end)
+    start = end
+  }
+}
+```

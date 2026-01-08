@@ -1,10 +1,11 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`query-iterator concatQueryResults 1`] = `
 [
   [
     QueryCommand {
       "clientCommand": QueryCommand {
+        "deserialize": [Function],
         "input": {
           "ExclusiveStartKey": undefined,
           "ExpressionAttributeNames": {
@@ -29,6 +30,8 @@ exports[`query-iterator concatQueryResults 1`] = `
           "resolve": [Function],
           "use": [Function],
         },
+        "schema": undefined,
+        "serialize": [Function],
       },
       "input": {
         "ExclusiveStartKey": undefined,
@@ -41,34 +44,20 @@ exports[`query-iterator concatQueryResults 1`] = `
         "KeyConditionExpression": "#pk = :pk",
         "TableName": "table",
       },
-      "inputKeyNodes": [
-        {
-          "children": {
-            "children": [
-              {
-                "key": "AttributeValueList",
-              },
-            ],
+      "inputKeyNodes": {
+        "ExclusiveStartKey": {},
+        "ExpressionAttributeValues": {},
+        "KeyConditions": {
+          "*": {
+            "AttributeValueList": [],
           },
-          "key": "KeyConditions",
         },
-        {
-          "children": {
-            "children": [
-              {
-                "key": "AttributeValueList",
-              },
-            ],
+        "QueryFilter": {
+          "*": {
+            "AttributeValueList": [],
           },
-          "key": "QueryFilter",
         },
-        {
-          "key": "ExclusiveStartKey",
-        },
-        {
-          "key": "ExpressionAttributeValues",
-        },
-      ],
+      },
       "middlewareStack": {
         "add": [Function],
         "addRelativeTo": [Function],
@@ -82,19 +71,19 @@ exports[`query-iterator concatQueryResults 1`] = `
         "resolve": [Function],
         "use": [Function],
       },
-      "outputKeyNodes": [
-        {
-          "key": "Items",
+      "outputKeyNodes": {
+        "Items": {
+          "*": {},
         },
-        {
-          "key": "LastEvaluatedKey",
-        },
-      ],
+        "LastEvaluatedKey": {},
+      },
+      "schema": undefined,
     },
   ],
   [
     QueryCommand {
       "clientCommand": QueryCommand {
+        "deserialize": [Function],
         "input": {
           "ExclusiveStartKey": {
             "key": "1",
@@ -121,6 +110,8 @@ exports[`query-iterator concatQueryResults 1`] = `
           "resolve": [Function],
           "use": [Function],
         },
+        "schema": undefined,
+        "serialize": [Function],
       },
       "input": {
         "ExclusiveStartKey": {
@@ -135,34 +126,20 @@ exports[`query-iterator concatQueryResults 1`] = `
         "KeyConditionExpression": "#pk = :pk",
         "TableName": "table",
       },
-      "inputKeyNodes": [
-        {
-          "children": {
-            "children": [
-              {
-                "key": "AttributeValueList",
-              },
-            ],
+      "inputKeyNodes": {
+        "ExclusiveStartKey": {},
+        "ExpressionAttributeValues": {},
+        "KeyConditions": {
+          "*": {
+            "AttributeValueList": [],
           },
-          "key": "KeyConditions",
         },
-        {
-          "children": {
-            "children": [
-              {
-                "key": "AttributeValueList",
-              },
-            ],
+        "QueryFilter": {
+          "*": {
+            "AttributeValueList": [],
           },
-          "key": "QueryFilter",
         },
-        {
-          "key": "ExclusiveStartKey",
-        },
-        {
-          "key": "ExpressionAttributeValues",
-        },
-      ],
+      },
       "middlewareStack": {
         "add": [Function],
         "addRelativeTo": [Function],
@@ -176,19 +153,19 @@ exports[`query-iterator concatQueryResults 1`] = `
         "resolve": [Function],
         "use": [Function],
       },
-      "outputKeyNodes": [
-        {
-          "key": "Items",
+      "outputKeyNodes": {
+        "Items": {
+          "*": {},
         },
-        {
-          "key": "LastEvaluatedKey",
-        },
-      ],
+        "LastEvaluatedKey": {},
+      },
+      "schema": undefined,
     },
   ],
   [
     QueryCommand {
       "clientCommand": QueryCommand {
+        "deserialize": [Function],
         "input": {
           "ExclusiveStartKey": {
             "key": "2",
@@ -215,6 +192,8 @@ exports[`query-iterator concatQueryResults 1`] = `
           "resolve": [Function],
           "use": [Function],
         },
+        "schema": undefined,
+        "serialize": [Function],
       },
       "input": {
         "ExclusiveStartKey": {
@@ -229,34 +208,20 @@ exports[`query-iterator concatQueryResults 1`] = `
         "KeyConditionExpression": "#pk = :pk",
         "TableName": "table",
       },
-      "inputKeyNodes": [
-        {
-          "children": {
-            "children": [
-              {
-                "key": "AttributeValueList",
-              },
-            ],
+      "inputKeyNodes": {
+        "ExclusiveStartKey": {},
+        "ExpressionAttributeValues": {},
+        "KeyConditions": {
+          "*": {
+            "AttributeValueList": [],
           },
-          "key": "KeyConditions",
         },
-        {
-          "children": {
-            "children": [
-              {
-                "key": "AttributeValueList",
-              },
-            ],
+        "QueryFilter": {
+          "*": {
+            "AttributeValueList": [],
           },
-          "key": "QueryFilter",
         },
-        {
-          "key": "ExclusiveStartKey",
-        },
-        {
-          "key": "ExpressionAttributeValues",
-        },
-      ],
+      },
       "middlewareStack": {
         "add": [Function],
         "addRelativeTo": [Function],
@@ -270,14 +235,13 @@ exports[`query-iterator concatQueryResults 1`] = `
         "resolve": [Function],
         "use": [Function],
       },
-      "outputKeyNodes": [
-        {
-          "key": "Items",
+      "outputKeyNodes": {
+        "Items": {
+          "*": {},
         },
-        {
-          "key": "LastEvaluatedKey",
-        },
-      ],
+        "LastEvaluatedKey": {},
+      },
+      "schema": undefined,
     },
   ],
 ]
@@ -288,6 +252,7 @@ exports[`query-iterator concatQueryResults with start key 1`] = `
   [
     QueryCommand {
       "clientCommand": QueryCommand {
+        "deserialize": [Function],
         "input": {
           "ExclusiveStartKey": {
             "key": "start-key",
@@ -314,6 +279,8 @@ exports[`query-iterator concatQueryResults with start key 1`] = `
           "resolve": [Function],
           "use": [Function],
         },
+        "schema": undefined,
+        "serialize": [Function],
       },
       "input": {
         "ExclusiveStartKey": {
@@ -328,34 +295,20 @@ exports[`query-iterator concatQueryResults with start key 1`] = `
         "KeyConditionExpression": "#pk = :pk",
         "TableName": "table",
       },
-      "inputKeyNodes": [
-        {
-          "children": {
-            "children": [
-              {
-                "key": "AttributeValueList",
-              },
-            ],
+      "inputKeyNodes": {
+        "ExclusiveStartKey": {},
+        "ExpressionAttributeValues": {},
+        "KeyConditions": {
+          "*": {
+            "AttributeValueList": [],
           },
-          "key": "KeyConditions",
         },
-        {
-          "children": {
-            "children": [
-              {
-                "key": "AttributeValueList",
-              },
-            ],
+        "QueryFilter": {
+          "*": {
+            "AttributeValueList": [],
           },
-          "key": "QueryFilter",
         },
-        {
-          "key": "ExclusiveStartKey",
-        },
-        {
-          "key": "ExpressionAttributeValues",
-        },
-      ],
+      },
       "middlewareStack": {
         "add": [Function],
         "addRelativeTo": [Function],
@@ -369,19 +322,19 @@ exports[`query-iterator concatQueryResults with start key 1`] = `
         "resolve": [Function],
         "use": [Function],
       },
-      "outputKeyNodes": [
-        {
-          "key": "Items",
+      "outputKeyNodes": {
+        "Items": {
+          "*": {},
         },
-        {
-          "key": "LastEvaluatedKey",
-        },
-      ],
+        "LastEvaluatedKey": {},
+      },
+      "schema": undefined,
     },
   ],
   [
     QueryCommand {
       "clientCommand": QueryCommand {
+        "deserialize": [Function],
         "input": {
           "ExclusiveStartKey": {
             "key": "1",
@@ -408,6 +361,8 @@ exports[`query-iterator concatQueryResults with start key 1`] = `
           "resolve": [Function],
           "use": [Function],
         },
+        "schema": undefined,
+        "serialize": [Function],
       },
       "input": {
         "ExclusiveStartKey": {
@@ -422,34 +377,20 @@ exports[`query-iterator concatQueryResults with start key 1`] = `
         "KeyConditionExpression": "#pk = :pk",
         "TableName": "table",
       },
-      "inputKeyNodes": [
-        {
-          "children": {
-            "children": [
-              {
-                "key": "AttributeValueList",
-              },
-            ],
+      "inputKeyNodes": {
+        "ExclusiveStartKey": {},
+        "ExpressionAttributeValues": {},
+        "KeyConditions": {
+          "*": {
+            "AttributeValueList": [],
           },
-          "key": "KeyConditions",
         },
-        {
-          "children": {
-            "children": [
-              {
-                "key": "AttributeValueList",
-              },
-            ],
+        "QueryFilter": {
+          "*": {
+            "AttributeValueList": [],
           },
-          "key": "QueryFilter",
         },
-        {
-          "key": "ExclusiveStartKey",
-        },
-        {
-          "key": "ExpressionAttributeValues",
-        },
-      ],
+      },
       "middlewareStack": {
         "add": [Function],
         "addRelativeTo": [Function],
@@ -463,19 +404,19 @@ exports[`query-iterator concatQueryResults with start key 1`] = `
         "resolve": [Function],
         "use": [Function],
       },
-      "outputKeyNodes": [
-        {
-          "key": "Items",
+      "outputKeyNodes": {
+        "Items": {
+          "*": {},
         },
-        {
-          "key": "LastEvaluatedKey",
-        },
-      ],
+        "LastEvaluatedKey": {},
+      },
+      "schema": undefined,
     },
   ],
   [
     QueryCommand {
       "clientCommand": QueryCommand {
+        "deserialize": [Function],
         "input": {
           "ExclusiveStartKey": {
             "key": "2",
@@ -502,6 +443,8 @@ exports[`query-iterator concatQueryResults with start key 1`] = `
           "resolve": [Function],
           "use": [Function],
         },
+        "schema": undefined,
+        "serialize": [Function],
       },
       "input": {
         "ExclusiveStartKey": {
@@ -516,34 +459,20 @@ exports[`query-iterator concatQueryResults with start key 1`] = `
         "KeyConditionExpression": "#pk = :pk",
         "TableName": "table",
       },
-      "inputKeyNodes": [
-        {
-          "children": {
-            "children": [
-              {
-                "key": "AttributeValueList",
-              },
-            ],
+      "inputKeyNodes": {
+        "ExclusiveStartKey": {},
+        "ExpressionAttributeValues": {},
+        "KeyConditions": {
+          "*": {
+            "AttributeValueList": [],
           },
-          "key": "KeyConditions",
         },
-        {
-          "children": {
-            "children": [
-              {
-                "key": "AttributeValueList",
-              },
-            ],
+        "QueryFilter": {
+          "*": {
+            "AttributeValueList": [],
           },
-          "key": "QueryFilter",
         },
-        {
-          "key": "ExclusiveStartKey",
-        },
-        {
-          "key": "ExpressionAttributeValues",
-        },
-      ],
+      },
       "middlewareStack": {
         "add": [Function],
         "addRelativeTo": [Function],
@@ -557,14 +486,13 @@ exports[`query-iterator concatQueryResults with start key 1`] = `
         "resolve": [Function],
         "use": [Function],
       },
-      "outputKeyNodes": [
-        {
-          "key": "Items",
+      "outputKeyNodes": {
+        "Items": {
+          "*": {},
         },
-        {
-          "key": "LastEvaluatedKey",
-        },
-      ],
+        "LastEvaluatedKey": {},
+      },
+      "schema": undefined,
     },
   ],
 ]

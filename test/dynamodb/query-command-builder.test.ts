@@ -93,7 +93,7 @@ describe("partitionKeyEquals", () => {
         .partitionKeyEquals("pk", "value1")
         .partitionKeyEquals("pk", "value1")
         .buildCommandInput()
-    ).toThrowError(/Max one partition key condition is allowed/)
+    ).toThrow(/Max one partition key condition is allowed/)
   })
 
   test("sortKeyCompare - double sort key condition should fail", () => {
@@ -105,7 +105,7 @@ describe("partitionKeyEquals", () => {
         .sortKeyCondition("sk", "begins_with", "value1")
         .sortKeyCondition("sk", "=", "value1")
         .buildCommandInput()
-    ).toThrowError(/Max one sort key condition is allowed/)
+    ).toThrow(/Max one sort key condition is allowed/)
   })
 
   test("missing partition key condition should fail", () => {
@@ -113,7 +113,7 @@ describe("partitionKeyEquals", () => {
 
     expect(() =>
       builder.sortKeyCondition("sk", "=", "value1").buildCommandInput()
-    ).toThrowError(/Missing partition key condition/)
+    ).toThrow(/Missing partition key condition/)
   })
 
   test("addFilterCondition", () => {

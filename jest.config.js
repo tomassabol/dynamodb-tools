@@ -17,9 +17,11 @@ module.exports = {
   // Transformers for files
   transform: {
     "^.+\\.tsx?$": [
-      "esbuild-jest",
+      "ts-jest",
       {
-        sourcemap: true,
+        tsconfig: {
+          sourceMap: true,
+        },
       },
     ],
   },
@@ -36,9 +38,6 @@ module.exports = {
 
   // The directory where Jest should output its coverage files
   coverageDirectory: ".coverage",
-
-  // Export test results fo SonarQube scanner to process test results
-  testResultsProcessor: "jest-sonar-reporter",
 
   /*
    * Test environment

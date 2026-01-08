@@ -41,7 +41,7 @@ describe("stream-handler", () => {
       onRemove,
     })
 
-    await expect(handler(eventFixture, contextFixture)).rejects.toThrowError(
+    await expect(handler(eventFixture, contextFixture)).rejects.toThrow(
       "Failure injection"
     )
   })
@@ -83,9 +83,9 @@ describe("stream-handler", () => {
       onRemove,
     })
 
-    await expect(
-      handler(invalidEventFixture, contextFixture)
-    ).rejects.toThrowError("Event INVALID not expected")
+    await expect(handler(invalidEventFixture, contextFixture)).rejects.toThrow(
+      "Event INVALID not expected"
+    )
   })
 
   test("invalid event with onError handler", async () => {
@@ -119,9 +119,9 @@ describe("stream-handler", () => {
       onRemove,
     })
 
-    await expect(
-      handler(invalidEventFixture, contextFixture)
-    ).rejects.toThrowError("Event INVALID not expected")
+    await expect(handler(invalidEventFixture, contextFixture)).rejects.toThrow(
+      "Event INVALID not expected"
+    )
   })
 })
 

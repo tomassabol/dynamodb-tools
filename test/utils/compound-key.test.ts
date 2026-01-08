@@ -17,7 +17,7 @@ describe("compound-key", () => {
   })
 
   test("parseCompoundKey fail", () => {
-    expect(() => parseCompoundKey("1#2#3", ["a", "b"])).toThrowError(
+    expect(() => parseCompoundKey("1#2#3", ["a", "b"])).toThrow(
       /Cannot parse compound key/
     )
   })
